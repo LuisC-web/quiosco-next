@@ -26,7 +26,8 @@ export default async function OrderPage({
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 2xl:grid-cols-3 items-starts ">
+      <h1 className="text-2xl">Elige y personaliza tú pedido</h1>
+      <div className="grid grid-cols-1  lg:grid-cols-3 gap-4 2xl:grid-cols-4 items-starts ">
         {products.map((product) => (
           <ProductCard key={product.id} product={product}></ProductCard>
         ))}
