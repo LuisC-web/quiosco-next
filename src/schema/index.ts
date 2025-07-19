@@ -13,3 +13,8 @@ export const OrderSchema = object({
     })
   ),
 });
+export const orderIdSchema = object({
+  orderId: string()
+    .transform((value) => parseInt(value))
+    .refine((value) => value > 0, { message: "Hay un error con el id" }),
+});
