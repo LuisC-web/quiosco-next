@@ -18,3 +18,6 @@ export const orderIdSchema = object({
     .transform((value) => parseInt(value))
     .refine((value) => value > 0, { message: "Hay un error con el id" }),
 });
+export const searchSchema = object({
+  search: string().min(1, { message: "La busqueda no puede ir vacia" }),
+});
