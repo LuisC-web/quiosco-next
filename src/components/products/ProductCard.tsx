@@ -1,4 +1,4 @@
-import { formatCurrency } from "@/src/utils";
+import { formatCurrency, getImagePaht } from "@/src/utils";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import AddProduct from "./AddProduct";
@@ -10,7 +10,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="border bg-white">
       <Image
-        src={"/products/" + product.image + ".jpg"}
+        src={getImagePaht(product.image)}
         alt={product.name}
         width={400}
         height={300}
