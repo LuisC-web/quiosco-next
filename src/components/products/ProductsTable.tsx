@@ -51,7 +51,7 @@ export default function ProductTable({ products }: ProductTable) {
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                       <Link
-                        href={`/admin/product/${product.id}/edit`}
+                        href={`/admin/products/${product.id}/edit`}
                         className="bg-amber-400/90 p-2.5 rounded text-gray-870 font-semibold"
                       >
                         Editar <span className="sr-only">,{product.name}</span>
