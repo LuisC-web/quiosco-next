@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { CldUploadWidget } from "next-cloudinary";
 import { ImageUp } from "lucide-react";
 import Image from "next/image";
-function ImageUpload() {
+import { getImagePaht } from "@/src/utils";
+type ImageUpload = {
+  image: string | undefined;
+};
+function ImageUpload({ image }: ImageUpload) {
   const [imageUrl, setImageUrl] = useState("");
   return (
     <CldUploadWidget
       uploadPreset="next-quiosco"
       options={{ maxFiles: 1 }}
       onSuccess={(results, { widget }) => {
-        console.log(results);
-
         if (results.event === "success") {
           //@ts-ignore
           setImageUrl(results.info.secure_url);
@@ -24,7 +26,7 @@ function ImageUpload() {
           <div>
             <label htmlFor="">Subir imagen</label>
             <div
-              className="bg-gray-100 py-10 px-4 flex flex-col justify-center items-center cursor-pointe relative"
+              className="bg-gray-100 py-10 px-4 flex flex-col justify-center items-center cursor-pointer relative opacity-90"
               onClick={() => open()}
             >
               <ImageUp className="size-15 text-gray-500"></ImageUp>
@@ -39,7 +41,24 @@ function ImageUpload() {
               )}
             </div>
           </div>
-          <input type="hidden" value={imageUrl} name="image-url" />
+          <input
+            type="hidden"
+            name="image-url"
+            defaultValue={imageUrl ? imageUrl : image}
+          />
+          {image && !imageUrl && (
+            <div className="" onClick={() => open()}>
+              <label>Image actual:</label>
+              <div className="bg-gray-100 h-60 flex flex-col justify-center items-center relative">
+                <Image
+                  fill
+                  style={{ objectFit: "contain" }}
+                  src={getImagePaht(image)}
+                  alt="Imagen de producto"
+                />
+              </div>
+            </div>
+          )}
         </>
       )}
     </CldUploadWidget>

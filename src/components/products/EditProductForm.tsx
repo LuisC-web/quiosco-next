@@ -1,14 +1,17 @@
 "use client";
 import { createProduct } from "@/actions/create-product-action";
+import { updateProduct } from "@/actions/update-product-action";
 import { ProductSchema } from "@/src/schema";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-export default function AddProductForm({
+export default function EditProductForm({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const params = useParams();
+  const id = +params.id!;
   const handleSubmit = async (formData: FormData) => {
     const data = {
       name: formData.get("name"),
@@ -26,14 +29,14 @@ export default function AddProductForm({
       });
       return;
     }
-    const response = await createProduct(result.data);
+    const response = await updateProduct(result.data, id);
     if (response?.errors) {
       response.errors.forEach((error) => {
         toast.error(error.message);
       });
       return;
     }
-    toast.success("Creado actualizado");
+    toast.success("Producto actualizado");
     router.push("/admin/products");
   };
   return (
@@ -42,7 +45,7 @@ export default function AddProductForm({
         {children}
         <input
           type="submit"
-          value="Crear producto"
+          value="Actualizar producto"
           className="p-2 bg-amber-400 text-white font-bold text-center text-xl w-full rounded"
         />
       </form>

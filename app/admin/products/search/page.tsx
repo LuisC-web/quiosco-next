@@ -19,8 +19,6 @@ async function SearchPage({
   searchParams: Promise<{ query: string }>;
 }) {
   const searchPage = await searchParams;
-  console.log("Search Params:", searchPage.query);
-
   const query = searchPage.query ?? "";
 
   const products = await getProducts(query);
