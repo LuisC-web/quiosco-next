@@ -3,9 +3,7 @@ import ProductTable from "@/src/components/products/ProductsTable";
 import Heading from "@/src/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
-const PAGE_SIZE = 10;
 
 const getProducts = async (query: string) =>
   await prisma.product.findMany({

@@ -21,9 +21,10 @@ async function fetchCategoryData(category: string) {
 export default async function OrderPage({
   params,
 }: {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }) {
-  const products = await fetchCategoryData(params.category);
+  const category = (await params).category;
+  const products = await fetchCategoryData(category);
 
   return (
     <>

@@ -13,6 +13,7 @@ interface store {
 export const useStore = create<store>((set, get) => ({
   order: [],
   addToOrder: (product) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { categoryId, image, ...newProduct } = product;
     let items: OrderItem[] = [];
     if (get().order.find((item) => item.id === newProduct.id)) {

@@ -3,7 +3,6 @@ import ProductForm from "@/src/components/products/ProductForm";
 import GoToBack from "@/src/components/ui/GoToBack";
 import Heading from "@/src/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
-import { Link } from "lucide-react";
 import { notFound } from "next/navigation";
 import React from "react";
 const getProductById = async (id: number) => {
@@ -14,7 +13,11 @@ const getProductById = async (id: number) => {
   }
   return product;
 };
-async function EditProductPage({ params }: { params: { id: string } }) {
+async function EditProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const product = await getProductById(+id);
   return (

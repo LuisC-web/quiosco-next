@@ -15,7 +15,7 @@ function ImageUpload({ image }: ImageUpload) {
       options={{ maxFiles: 1 }}
       onSuccess={(results, { widget }) => {
         if (results.event === "success") {
-          //@ts-ignore
+          // @ts-expect-error: `results.info` no tiene tipo correcto
           setImageUrl(results.info.secure_url);
           widget.close();
         }
